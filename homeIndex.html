@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+        <meta name="format-detection" content="telephone=no,email=no,adress=no">
+        <title>直播卫星户户通</title>
+        <link rel="stylesheet" type="text/css" href="../css/ui.css" />
+        <link rel="stylesheet" type="text/css" href="../css/reset.css" />
+        <!--<link rel="stylesheet" type="text/css" href="../plug/swiper-3.4.2.min.css" />-->
+        <script type="text/javascript" src="../plug/jquery-1.7.2.min.js"></script>
+        <!--<script type="text/javascript" src="../plug/swiper-3.4.2.jquery.min.js"></script>-->
+        <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <link rel="stylesheet" type="text/css" href="../plug/layui/css/layui.css">
+        <script type="text/javascript" src="../plug/layui/layui.js"></script>
+        <style>
+            .demo-class {
+                /*top: 300px !important;*/
+                width: 260px !important;
+            }
+            .title-class{
+                width: 260px !important;
+                background-color: rgba(0,0,0,.6)!important;
+                color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <!--首页-->
+        <div class="content-main content1">
+            <div style="margin-bottom: 58px;width: 100%">
+                <div class="header-box">
+                    <header class="home-page-head">
+                        <p class="back"></p>
+                        <p>首页</p>
+                        <p class="search" id="scanQRInfo"><img style="width: 25px" src="../images/a7.png" alt=""/></p>
+                    </header>
+                </div>
+                <div class="signin-form">
+                    <div>
+                        <img style="width: 100%" src="../images/a12.png" alt="">
+                        <!--<div class="swiper-container">-->
+                            <!--<div class="swiper-wrapper">-->
+                                <!--<div class="swiper-slide"><img src="../images/a15.jpg" alt=""></div>-->
+                                <!--<div class="swiper-slide"><img src="../images/a14.jpg" alt=""></div>-->
+                                <!--<div class="swiper-slide"><img src="../images/a13.jpg" alt=""></div>-->
+                            <!--</div>-->
+                            <!--<div class="swiper-pagination"></div>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="page-form">
+                        <div class="page-option">
+                            <div class="page-option-content">
+                                <div class="page-option-item" id="go-selfOpen">
+                                    <img src="../images/a4.png" alt="">
+                                    <span>开户开通</span>
+                                </div>
+                                <div class="page-option-item" id="go-userBinding">
+                                    <img src="../images/a5.png" alt="">
+                                    <span>设备绑定</span>
+                                </div>
+                                <div class="page-option-item" id="scanQRCode">
+                                    <img src="../images/a6.png" alt="">
+                                    <span>智慧服务</span>
+                                </div>
+                                <!--<div class="page-option-item" id="go-infoReport">
+                                    <img src="../images/a1.png" alt="">
+                                    <span>信息上传</span>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--我的-->
+        <div class="content-main content1 hide">
+            <div style="margin-bottom: 58px;width: 100%">
+                <div class="header-box">
+                    <header class="home-page-head">
+                        <p class="back"></p>
+                        <p>我的</p>
+                        <p class="logout"></p>
+                    </header>
+                </div>
+                <div class="signin-form">
+                    <div class="main-wrap">
+                        <div class="unit-type device-bor">
+                            <p>
+                                <img src="../images/main-01.png"/>
+                                <span class="massage no-show" id="systemUserName"></span>
+                                <span class="massage is-show go-login"><a style="text-decoration: underline;color: #3BB6F9;">未登录</a></span>
+                            </p>
+                            <span style="width: 50%;display: flex;justify-content: flex-end;" id="go-modifyName" class="isUserName">
+                                <img style="width: 12px;height: 18px;" src="../images/main-06.png"/>
+                            </span>
+                        </div>
+                        <div class="unit-type">
+                            <p>
+                                <img src="../images/main-02.png"/>
+                                <span class="massage no-show" id="mobilePhone"></span>
+                                <span class="massage is-show go-login"><a style="text-decoration: underline;color: #3BB6F9;">未登录</a></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="main-wrap" style="margin-top: 2%;">
+                        <div class="unit-type device-bor go-deviceList">
+                            <p>
+                                <img src="../images/main-04.png"/>
+                                <span class="massage">我的设备</span>
+                            </p>
+                            <img src="../images/main-06.png"/>
+                        </div>
+                        <div class="unit-type device-bor" id="go-modifyPhoneNum">
+                            <p>
+                                <img src="../images/main-02.png"/>
+                                <span class="massage">手机号码</span>
+                            </p>
+                            <img src="../images/main-06.png"/>
+                        </div>
+                        <div class="unit-type" id="go-login">
+                            <p>
+                                <img src="../images/main-03.png"/>
+                                <span class="massage">退出登录</span>
+                            </p>
+                            <img src="../images/main-06.png"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--底部导航切换-->
+        <ul class="footer-menu" id="bottom">
+            <li class="select-yes">
+                <div class="flexbox"><img src="../images/001_selected.png"/></div>
+                <p>首页</p>
+            </li>
+            <li>
+                <div class="flexbox"><img src="../images/003.png"/></div>
+                <p>我的</p>
+            </li>
+        </ul>
+    </body>
+
+    <script type="text/javascript">
+        var codeType="0";     //二维码类型
+        //获取全局存储的登录用户信息
+        var userInfoStr=window.localStorage.getItem("userInfo");
+        var userInfoObj=JSON.parse(userInfoStr) || {};
+
+        //登录与未登录状态的校验判断
+        if(userInfoObj.isLogin==1){
+            $('#systemUserName').html(userInfoObj.systemUserName);
+            $('#mobilePhone').html(userInfoObj.mobilePhone);
+            $('.no-show').css('display', 'block');
+            $('.is-show').css('display', 'none');
+            if(userInfoObj.systemUserType=="12"){
+                $('.isUserName').css('display', 'none')
+            }else {
+                $("#go-modifyName").click(function () {
+                    window.location.href="modifyName.html"
+                })
+            }
+        }else{
+            $('.no-show').css('display', 'none');
+            $('.is-show').css('display', 'block');
+            $('.isUserName').css('display', 'none');
+        }
+        $("#go-userBinding").click(function () {
+            if(userInfoObj.isLogin==1){
+                window.location.href="userBinding.html";
+            }else{
+                layui.use('layer', function(){
+                    var layer = layui.layer;
+                    layer.msg('请先登录，再进行操作', {
+                        skin: 'demo-class',
+                        shade: 0.5,
+                        icon: 2,
+                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                        window.location.href="login.html"
+                    });
+                });
+            }
+        });
+        $("#go-modifyPhoneNum").click(function () {
+            if(userInfoObj.isLogin==1){
+                window.location.href="modifyPhoneNum.html";
+            }else{
+                layui.use('layer', function(){
+                    var layer = layui.layer;
+                    layer.msg('请先登录，再进行操作', {
+                        skin: 'demo-class',
+                        shade: 0.5,
+                        icon: 2,
+                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                        window.location.href="login.html"
+                    });
+                });
+            }
+        });
+        $("#go-selfOpen").click(function () {
+            if(userInfoObj.isLogin==1){
+                window.location.href="selfOpen.html";
+            }else{
+                layui.use('layer', function(){
+                    var layer = layui.layer;
+                    layer.msg('请先登录，再进行操作', {
+                        skin: 'demo-class',
+                        shade: 0.5,
+                        icon: 2,
+                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                        window.location.href="login.html"
+                    });
+                });
+            }
+        });
+        $(".go-deviceList").click(function () {
+            if(userInfoObj.isLogin==1){
+                window.location.href="deviceList.html";
+            }else{
+                layui.use('layer', function(){
+                    var layer = layui.layer;
+                    layer.msg('请先登录，再进行操作', {
+                        skin: 'demo-class',
+                        shade: 0.5,
+                        icon: 2,
+                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                        window.location.href="login.html"
+                    });
+                });
+            }
+        });
+        $("#go-login").click(function () {
+            var userInfoStr=window.localStorage.getItem("userInfo");
+            var userInfoObj=JSON.parse(userInfoStr);
+            var userInfo={
+                token:userInfoObj.token  //对应的token
+            };
+            window.localStorage.setItem("userInfo",JSON.stringify(userInfo));
+            window.location.href="login.html"
+        });
+        //$("#go-infoReport").click(function () {
+        //    window.location.href="infoReport.html";
+        //});
+        $(".go-login").click(function () {
+            window.location.href="login.html";
+        });
+        //轮播图
+        //        var banner = new Swiper(".swiper-container",{
+        //            direction:"horizontal",//设置滚动方向
+        //            autoplay:2000,//设置切换间隔事件
+        //            pagination:".swiper-pagination",//设置分页器的class名
+        //            observer:true,//修改swiper自己或子元素时，自动初始化swiper
+        //            observeParents:true,//修改swiper的父元素时，自动初始化swiper
+        //            paginationClickable:true,//设置分页器是否可以点击
+        //        });
+        //底部导航切换
+        $('ul').on("click","li",function(){
+            $(this).addClass('select-yes');
+            $(this).siblings().removeClass('select-yes');
+            var liIndex = $(this).index();//点击li时，保存当前li的下标index，
+            $(".content1").eq(liIndex).removeClass("hide").siblings(".content1").addClass("hide");
+            var nodes = $('#bottom li img');
+            for(var i=0; i<nodes.length; i++){
+                //把所有的路径全部变成未选中的图标
+                nodes[i].src = nodes[i].src.replace(/.png|_selected.png/,'.png');
+            }
+            $('.select-yes').children('div').children('img')[0].src=$('.select-yes').children('div').children('img')[0].src.replace(/.png|_selected.png/,'_selected.png');
+        });
+        //页面中的所有元素（包括图片、flash）等都加载完毕后，才能执行
+        $(window).load(function() {
+            
+        });
+        //页面中的DOM元素加载完成后便可执行
+        $(document).ready(function(){
+            scanCode();
+        });
+        //扫一扫二维码
+        function scanCode(){
+            $.ajax({
+                type : "post",
+                url : "/weixin/page/mobile/huhutong/signature.do",
+                data : {
+                    url : location.href.split('#')[0]
+                },
+                dataType : "json",
+                success : function(data) {
+                    var result = data.resultMap.signMap;
+                    wx.config({
+                        debug : false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        appId : result.appid, // 必填，公众号的唯一标识
+                        timestamp : result.timestamp, // 必填，生成签名的时间戳
+                        nonceStr : result.nonceStr, // 必填，生成签名的随机串
+                        signature : result.signature,// 必填，签名
+                        jsApiList : ["scanQRCode"]// 必填，需要使用的JS接口列表
+                    });
+                }
+            });
+        }
+        //通过ready接口处理成功验证
+        wx.ready(function(){
+            // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+            $("#scanQRCode").click(function () {
+                if(userInfoObj.isLogin==1){
+                    wx.scanQRCode({
+                        needResult : 1,
+                        desc : 'scanQRCode desc',
+                        success : function(res) {
+                            var scanResult = res.resultStr;
+                            //解析扫描到的二维码信息，区分开通二维码与机顶盒主菜单二维码
+                            if(scanResult.substring(0, 2)== "ab") {
+                                codeType="1";
+                                //解析头部信息
+                                var regex="^[A-Fa-f0-9]+$";
+                                if(!(scanResult.substring(2, 4).match(regex)) && !(scanResult.substring(4, 6).match(regex)) && !(scanResult.substring(6, 8).match(regex)) && !(scanResult.substring(8, 12).match(regex))){
+                                    layui.use('layer', function(){
+                                        var layer = layui.layer;
+                                        layer.msg('请扫描正确的安装开通二维码！',{
+                                            skin: 'title-class'
+                                        });
+                                    });
+                                    return;
+                                }
+                                if(parseInt(scanResult.substring(8, 12),16) != scanResult.substring(12).length){
+                                    layui.use('layer', function(){
+                                        var layer = layui.layer;
+                                        layer.msg('请扫描正确的安装开通二维码！',{
+                                            skin: 'title-class'
+                                        });
+                                    });
+                                    return;
+                                }
+                                var scanTimestamp = parseInt(scanResult.substring(18, 26),16);  //时间戳
+                                var nowTimestamp;
+                                $.ajax({
+                                    type : "post",
+                                    url : "/weixin/page/mobile/huhutong/getTime.do",
+                                    data : {},
+                                    dataType : "json",
+                                    success : function(data) {
+                                        if(data.respObject!="" && data.respObject!= undefined && data.respResult !=false){
+                                            nowTimestamp = Math.round(data.respObject / 1000);
+                                        }
+                                        //当前设定的超时时间
+                                        var timeOver = 30*60;
+                                        //判断时间
+                                        // if((nowTimestamp-scanTimestamp)>timeOver) {
+                                        //     layui.use('layer', function(){
+                                        //         var layer = layui.layer;
+                                        //         layer.msg('设备信息失效，请扫描最新二维码后重新发送！',{
+                                        //             skin: 'title-class'
+                                        //         });
+                                        //     });
+                                        //     return;
+                                        // }
+
+                                        //解析头部信息正确的话,解析各参数并赋值
+                                        var scanMessagePackage=scanResult.substring(12,scanResult.length);//二维码报文
+                                        var scanHsmId=scanResult.substring(54, 70);//安全序列号
+                                        var scanSocId=scanResult.substring(38, 54);//芯片序列号
+                                        var scanLongitude= (parseInt(scanResult.substring(74, 82),16))/1000000;//经度
+                                        var scanLatitude= (parseInt(scanResult.substring(82, 90),16))/1000000;//纬度
+                                        window.location.href="richScan.html?"+"scanLongitude="+scanLongitude+"&scanLatitude="+scanLatitude+"&scanSocId="+scanSocId+"&scanHsmId="+scanHsmId+"&scanMessagePackage="+scanMessagePackage+"&codeType="+codeType+"&scanResult="+scanResult;
+                                    },
+                                    error : function(data) {
+                                        layui.use('layer', function(){
+                                            var layer = layui.layer;
+                                            layer.msg('请检查网络', {
+                                                skin: 'demo-class',
+                                                shade: 0.5,
+                                                icon: 5,
+                                                time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                                            }, function(){
+
+                                            });
+                                        });
+                                    }
+                                });
+                            }else{
+                                codeType="0";
+                                //210是正常的数据格式
+                                if(scanResult.length > 190 && scanResult.length < 230){
+                                    //1.二维码中读取时间校验
+                                    //1.1读取时间
+                                    var scanTimestamp = scanResult.substr(scanResult.length-112,8);   //时间戳
+                                    //不能转换为时间
+                                    if(scanTimestamp.match(/^[0-9a-fA-F]{8}$/) == null){
+                                        layui.use('layer', function(){
+                                            var layer = layui.layer;
+                                            layer.msg('请扫描正确的机顶盒主菜单二维码！',{
+                                                skin: 'title-class'
+                                            });
+                                        });
+                                        return;
+                                    }
+                                    //1.2转换16进制为10进制
+                                    scanTimestamp = parseInt(scanTimestamp,16);   //时间戳
+                                    //1.3获取当前时间（获取服务器时间）
+                                    var nowTimestamp;
+                                    $.ajax({
+                                        type : "post",
+                                        url : "/weixin/page/mobile/huhutong/getTime.do",
+                                        data : {},
+                                        dataType : "json",
+                                        success : function(data) {
+                                            if(data.respObject!="" && data.respObject!= undefined && data.respResult !=false){
+                                                nowTimestamp = Math.round(data.respObject / 1000);
+                                            }
+                                            //1.4当前设定的超时时间
+                                            var timeOver = 30*60;
+                                            //1.5判断时间
+                                            // if((nowTimestamp - scanTimestamp)>timeOver){
+                                            //     layui.use('layer', function(){
+                                            //         var layer = layui.layer;
+                                            //         layer.msg('设备信息失效，请扫描最新二维码后重新发送！',{
+                                            //             skin: 'title-class'
+                                            //         });
+                                            //     });
+                                            //     return;
+                                            // }
+
+                                            //解析头部信息正确的话,解析各参数并赋值
+                                            var scanSocId=scanResult.substring(6, 22);//芯片序列号
+                                            var scanLongitude=scanResult.substr(scanResult.length-128,8);//经度
+                                            scanLongitude= (parseInt(scanLongitude,16))/1000000;
+                                            var scanLatitude=scanResult.substr(scanResult.length-120,8);//纬度
+                                            scanLatitude= (parseInt(scanLatitude,16))/1000000;
+                                            window.location.href="richScan.html?"+"scanLongitude="+scanLongitude+"&scanLatitude="+scanLatitude+"&scanSocId="+scanSocId+"&codeType="+codeType+"&scanResult="+scanResult;
+                                        },
+                                        error : function(data) {
+                                            layui.use('layer', function(){
+                                                var layer = layui.layer;
+                                                layer.msg('请检查网络', {
+                                                    skin: 'demo-class',
+                                                    shade: 0.5,
+                                                    icon: 5,
+                                                    time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                                                }, function(){
+
+                                                });
+                                            });
+                                        }
+                                    });
+                                }else{
+                                    //不正确
+                                    layui.use('layer', function(){
+                                        var layer = layui.layer;
+                                        layer.msg('请扫描正确的机顶盒主菜单二维码！',{
+                                            skin: 'title-class'
+                                        });
+                                    });
+                                }
+                            }
+                        }
+                    });
+                }else{
+                    layui.use('layer', function(){
+                        var layer = layui.layer;
+                        layer.msg('请先登录，再进行操作', {
+                            skin: 'demo-class',
+                            shade: 0.5,
+                            icon: 2,
+                            time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                        }, function(){
+                            window.location.href="login.html"
+                        });
+                    });
+                }
+            });
+            $("#scanQRInfo").click(function () {
+                wx.scanQRCode({
+                    needResult : 1,
+                    desc : 'scanQRCode desc',
+                    success : function(res) {
+                        var scanResult = res.resultStr;
+                        window.location.href="scanInfo.html?"+"scanResult="+scanResult
+                    }
+                });
+            });
+        });
+        //通过error接口处理失败验证
+        wx.error(function(res){
+            // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+            layui.use('layer', function(){
+                var layer = layui.layer;
+                layer.msg('调用微信服务异常，请稍后重试！', {
+                    skin: 'demo-class',
+                    shade: 0.5,
+                    icon: 5,//1.2 5.6
+                    time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                }, function(){
+
+                });
+            });
+        });
+    </script>
+
+</html>
